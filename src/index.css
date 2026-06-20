@@ -1,0 +1,36 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: 'Baloo 2', 'Noto Sans Devanagari', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  /* Kids tap a lot — kill the blue tap highlight and accidental text selection. */
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+}
+
+/* Devanagari needs a touch more line-height to breathe. */
+.script {
+  font-family: 'Noto Sans Devanagari', 'Baloo 2', sans-serif;
+  line-height: 1.5;
+}
+
+/* Sound-wave bars used on speaking blocks & the mic modal. */
+.wavebar {
+  width: 4px;
+  border-radius: 9999px;
+  background: currentColor;
+  animation: wave 0.8s ease-in-out infinite;
+}
