@@ -72,8 +72,8 @@ export default function SecretAgents() {
                   className={`flex flex-col items-center rounded-xl px-4 py-2 font-bold shadow ${b.ui_color}`}
                 >
                   <span className="text-xl">{b.emoji}</span>
-                  <span className="script text-lg">{b.target_script}</span>
-                  <span className="text-xs opacity-90">{b.target_transliteration}</span>
+                  <span className="text-base font-extrabold">{b.target_transliteration}</span>
+                  <span className="script text-xs opacity-70">{b.target_script}</span>
                 </button>
                 {i < QUESTION.length - 1 && <span className="font-black text-cyan-400">→</span>}
               </div>
@@ -222,9 +222,9 @@ function FixedBlock({ block }) {
       className={`flex h-28 w-24 flex-col items-center justify-center rounded-2xl font-bold shadow ${block.ui_color}`}
     >
       <span className="text-2xl">{block.emoji}</span>
-      <span className="script text-lg">{block.target_script}</span>
-      <span className="text-xs opacity-90">{block.target_transliteration}</span>
+      <span className="text-base font-extrabold">{block.target_transliteration}</span>
       <span className="text-[10px] uppercase opacity-70">{block.english_meaning}</span>
+      <span className="script text-xs opacity-70">{block.target_script}</span>
     </button>
   )
 }
@@ -246,8 +246,8 @@ function MissionResult({ answerBlocks, onClose }) {
           Mission Accomplished
         </p>
         <p className="mt-2 text-2xl font-extrabold">🔓 Code Broken!</p>
-        <p className="script mt-3 text-2xl font-bold">{script}</p>
-        <p className="text-base font-semibold text-cyan-100">{translit}</p>
+        <p className="mt-3 text-2xl font-extrabold">{translit}</p>
+        <p className="script text-base font-semibold text-cyan-100/80">{script}</p>
         <button
           type="button"
           onClick={onClose}

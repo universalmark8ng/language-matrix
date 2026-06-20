@@ -74,16 +74,21 @@ export default function Block({
         )}
       </span>
 
-      {block.emoji && <span className="text-2xl leading-none">{block.emoji}</span>}
-      <span className="script leading-tight">{block.target_script}</span>
-      <span className="text-xs font-semibold opacity-90 leading-tight">
+      {/* Kid-first order: picture → the word to SAY (hero) → meaning → script.
+          Absolute beginners read the transliteration aloud; the Devanagari is
+          small, for gentle exposure only (no reading pressure). */}
+      {block.emoji && <span className="text-3xl leading-none">{block.emoji}</span>}
+      <span className="text-lg font-extrabold leading-tight">
         {block.target_transliteration}
       </span>
       {showEnglish && (
-        <span className="text-[10px] font-medium uppercase tracking-wide opacity-70 leading-tight">
+        <span className="text-[11px] font-bold uppercase tracking-wide opacity-70 leading-tight">
           {block.english_meaning}
         </span>
       )}
+      <span className="script text-sm font-semibold opacity-70 leading-tight">
+        {block.target_script}
+      </span>
     </button>
   )
 }

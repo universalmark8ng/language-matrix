@@ -87,8 +87,8 @@ export default function MicModal({
               🔊 Hear it first
             </button>
 
-            <p className="script mt-2 text-3xl font-bold text-slate-900">{script}</p>
-            <p className="mt-1 text-lg font-semibold text-indigo-500">{transliteration}</p>
+            <p className="mt-2 text-3xl font-extrabold text-slate-900">{transliteration}</p>
+            <p className="script mt-1 text-lg font-semibold text-slate-400">{script}</p>
 
             <div className="mt-6 flex flex-col items-center gap-3">
               <div className="relative grid place-items-center">
@@ -151,8 +151,8 @@ export default function MicModal({
               </div>
             </div>
             <h3 className="mt-4 text-2xl font-extrabold text-green-600">Perfect! 🎉</h3>
-            <p className="script mt-1 text-2xl font-bold text-slate-800">{script}</p>
-            <p className="text-base font-semibold text-slate-500">{transliteration}</p>
+            <p className="mt-1 text-2xl font-extrabold text-slate-800">{transliteration}</p>
+            <p className="script text-base font-semibold text-slate-400">{script}</p>
             <button
               type="button"
               onClick={onSuccess}

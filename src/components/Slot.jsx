@@ -74,8 +74,10 @@ export default function Slot({
               <X className="h-4 w-4" />
             </button>
             <span className="text-2xl leading-none">{block.emoji}</span>
-            <span className="script text-lg font-bold leading-tight">{block.target_script}</span>
-            <span className="text-xs font-semibold opacity-90">{block.target_transliteration}</span>
+            <span className="text-base font-extrabold leading-tight">
+              {block.target_transliteration}
+            </span>
+            <span className="script text-sm font-semibold opacity-70">{block.target_script}</span>
           </>
         ) : (
           <span className="px-1 text-center text-xs font-bold uppercase tracking-wide text-slate-400">

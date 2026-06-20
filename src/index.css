@@ -21,10 +21,12 @@ body {
   user-select: none;
 }
 
-/* Devanagari needs a touch more line-height to breathe. */
+/* Devanagari rendered in the same chunky, kid-friendly Baloo 2 face as the
+   Latin text (Baloo 2 covers Devanagari); Noto is just a safety fallback.
+   A touch more line-height lets the matras breathe. */
 .script {
-  font-family: 'Noto Sans Devanagari', 'Baloo 2', sans-serif;
-  line-height: 1.5;
+  font-family: 'Baloo 2', 'Noto Sans Devanagari', sans-serif;
+  line-height: 1.55;
 }
 
 /* Sound-wave bars used on speaking blocks & the mic modal. */

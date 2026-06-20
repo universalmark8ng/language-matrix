@@ -174,8 +174,8 @@ function RobotResult({ result, onClose }) {
         <p className="mt-2 text-sm font-bold uppercase tracking-widest text-blue-200">
           Command Executed
         </p>
-        <p className="script mt-2 text-3xl font-extrabold">{result.script}</p>
-        <p className="text-lg font-semibold text-blue-100">{result.translit}</p>
+        <p className="mt-2 text-3xl font-extrabold">{result.translit}</p>
+        <p className="script text-lg font-semibold text-blue-200/80">{result.script}</p>
         <div className="mt-5 rounded-2xl bg-white/15 px-4 py-4 text-2xl font-extrabold">
           {result.line}
         </div>

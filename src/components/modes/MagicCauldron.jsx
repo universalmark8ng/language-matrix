@@ -120,11 +120,11 @@ export default function MagicCauldron() {
                   {blocks[0].emoji}
                   {blocks[1].emoji}
                 </span>
-                <span className="script text-2xl font-extrabold">
-                  {blocks[0].target_script} {blocks[1].target_script}
-                </span>
-                <span className="text-sm font-bold">
+                <span className="text-2xl font-extrabold">
                   {blocks[0].target_transliteration} {blocks[1].target_transliteration}
+                </span>
+                <span className="script text-base font-bold opacity-70">
+                  {blocks[0].target_script} {blocks[1].target_script}
                 </span>
               </button>
             )}
@@ -239,8 +239,8 @@ function SpellResult({ result, onClose }) {
         <p className="mt-2 text-sm font-bold uppercase tracking-widest text-fuchsia-200">
           Spell Successful!
         </p>
-        <p className="script mt-1 text-2xl font-bold">{result.script}</p>
-        <p className="text-base font-semibold text-fuchsia-100">{result.translit}</p>
+        <p className="mt-1 text-2xl font-extrabold">{result.translit}</p>
+        <p className="script text-base font-semibold text-fuchsia-200/80">{result.script}</p>
         <div className="mt-5 rounded-2xl bg-white/15 px-4 py-5">
           <p className="text-xs font-bold uppercase tracking-widest text-fuchsia-200">
             You summoned
