@@ -57,6 +57,24 @@ src/
     modes/  CommandRobot.jsx  MagicCauldron.jsx  SecretAgents.jsx
 ```
 
+## Curriculum
+
+The app is driven by a **beginner-adapted Hindi curriculum aligned to the current
+NCERT/CBSE syllabus** (NCF-SE 2023: **Sarangi** Cl 1–2, **Veena** Cl 3–5) —
+speaking & listening first, Devanagari recognition only. The teaching backbone
+is in [`curriculum/CURRICULUM.md`](curriculum/CURRICULUM.md); the per-unit
+vocabulary that feeds the three activities lives in
+[`src/data/curriculum.js`](src/data/curriculum.js).
+
+- **Levels:** Foundations Review (Grades 1–2 diagnostic) · Grade 3 Core (8 units) ·
+  Grade 4 / 5 (stubbed for later).
+- The header's **curriculum bar** lets the teacher pick a Level + Unit; the chosen
+  unit's words load into Command-A-Robot, Magic Cauldron and Secret Agents.
+- Teacher ★ ratings are stamped with the active **unit**, giving per-unit records.
+
+Add a unit by appending to a level's `units` array in `curriculum.js`; the three
+activities pick it up automatically.
+
 ## Branding
 
 Styled to the **DS Learning** brand (dslearning.com.au):

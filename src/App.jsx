@@ -1,5 +1,6 @@
 import { useMatrix } from './context/MatrixContext.jsx'
 import Header from './components/Header.jsx'
+import UnitPicker from './components/UnitPicker.jsx'
 import TeacherBar from './components/TeacherBar.jsx'
 import CommandRobot from './components/modes/CommandRobot.jsx'
 import MagicCauldron from './components/modes/MagicCauldron.jsx'
@@ -18,19 +19,20 @@ const MODE_INTRO = {
 }
 
 export default function App() {
-  const { mode } = useMatrix()
+  const { mode, active } = useMatrix()
   const ActiveMode = MODE_COMPONENTS[mode]
 
   return (
     <div className="min-h-full bg-gradient-to-b from-ds-bg via-ds-warm to-ds-cream">
       <Header />
+      <UnitPicker />
 
       <main className="mx-auto w-full max-w-5xl px-4 pb-28 pt-5">
         <p className="mb-4 text-center font-serif text-lg font-semibold text-ds-ink-soft">
           {MODE_INTRO[mode]}
         </p>
-        {/* key forces a fresh mount (and pop-in) when switching modes */}
-        <div key={mode} className="animate-pop-in">
+        {/* key forces a fresh mount (and pop-in) when switching modes OR units */}
+        <div key={`${mode}-${active.unitId}`} className="animate-pop-in">
           <ActiveMode />
         </div>
       </main>

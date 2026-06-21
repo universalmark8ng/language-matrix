@@ -1,6 +1,7 @@
-import { useMemo, useState } from 'react'
+import { useState } from 'react'
 import { Radio, Zap, RefreshCw, Volume2 } from 'lucide-react'
-import { byId, byType } from '../../data/blocks.js'
+import { getBlock as byId } from '../../data/curriculum.js'
+import { useMatrix } from '../../context/MatrixContext.jsx'
 import { speak, speakPhrase } from '../../lib/speech.js'
 import Block from '../Block.jsx'
 import Slot from '../Slot.jsx'
@@ -13,13 +14,17 @@ const KYA = 'util_001' // What
 // Question is always the fixed circuit: Yeh → Kya → Hai? (What is this?)
 const QUESTION = [YEH, KYA, HAI]
 
-function randomNoun(excludeId) {
-  const nouns = byType('noun').filter((n) => n.id !== excludeId)
-  return nouns[Math.floor(Math.random() * nouns.length)]
-}
-
 export default function SecretAgents() {
-  const [target, setTarget] = useState(() => randomNoun())
+  const { byType } = useMatrix()
+  // Nouns come from the active curriculum unit.
+  const nouns = byType('noun')
+  const pickNoun = (excludeId) => {
+    const pool = nouns.filter((n) => n.id !== excludeId)
+    const list = pool.length ? pool : nouns
+    return list[Math.floor(Math.random() * list.length)]
+  }
+
+  const [target, setTarget] = useState(() => pickNoun())
   const [answer, setAnswer] = useState([YEH, null, HAI]) // middle slot to solve
   const [pendingId, setPendingId] = useState(null)
   const [micOpen, setMicOpen] = useState(false)
@@ -28,8 +33,9 @@ export default function SecretAgents() {
   const solved = answer[1] === target.id
   const answerBlocks = answer.map((id) => (id ? byId(id) : null))
 
-  // Inventory for Agent 2: structural words + every thing, so the puzzle is real.
-  const tray = useMemo(() => [byId(YEH), byId(HAI), ...byType('noun')], [])
+  // Inventory for Agent 2: structural words + every thing in this unit, so the
+  // puzzle is real.
+  const tray = [byId(YEH), byId(HAI), ...nouns]
 
   function place(id) {
     // Only the middle slot is solvable; tapping fills it.
@@ -42,7 +48,7 @@ export default function SecretAgents() {
   }
 
   function newMission() {
-    setTarget((t) => randomNoun(t.id))
+    setTarget((t) => pickNoun(t.id))
     setAnswer([YEH, null, HAI])
     setPendingId(null)
     setDone(false)

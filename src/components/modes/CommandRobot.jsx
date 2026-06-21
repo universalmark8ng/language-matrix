@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Play, RotateCcw } from 'lucide-react'
-import { byId } from '../../data/blocks.js'
+import { getBlock as byId } from '../../data/curriculum.js'
 import { speakPhrase } from '../../lib/speech.js'
 import Inventory from '../Inventory.jsx'
 import Slot from '../Slot.jsx'

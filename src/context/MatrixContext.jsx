@@ -1,14 +1,24 @@
-import { createContext, useContext, useEffect, useMemo, useState } from 'react'
+import { createContext, useCallback, useContext, useEffect, useMemo, useState } from 'react'
+import {
+  LEVELS,
+  PLAYABLE_LEVELS,
+  findUnit,
+  firstUnitOf,
+  getBlock,
+  DEFAULT_LEVEL,
+  DEFAULT_UNIT,
+} from '../data/curriculum.js'
 
 const MatrixContext = createContext(null)
 
 export const MODES = [
-  { id: 'robot', label: 'Command-A-Robot', emoji: '🤖', accent: 'bg-blue-500' },
-  { id: 'cauldron', label: 'Magic Cauldron', emoji: '🧪', accent: 'bg-green-500' },
-  { id: 'agents', label: 'Secret Agents', emoji: '🕵️', accent: 'bg-purple-500' },
+  { id: 'robot', label: 'Command-A-Robot', emoji: '🤖', accent: 'bg-ds-accent' },
+  { id: 'cauldron', label: 'Magic Cauldron', emoji: '🧪', accent: 'bg-ds-accent' },
+  { id: 'agents', label: 'Secret Agents', emoji: '🕵️', accent: 'bg-ds-accent' },
 ]
 
 const LOG_KEY = 'language-matrix:teacher-log'
+const UNIT_KEY = 'language-matrix:active-unit'
 
 function loadLog() {
   try {
@@ -19,9 +29,20 @@ function loadLog() {
   }
 }
 
+function loadUnit() {
+  try {
+    const raw = localStorage.getItem(UNIT_KEY)
+    const saved = raw ? JSON.parse(raw) : null
+    if (saved && findUnit(saved.levelId, saved.unitId)) return saved
+  } catch {
+    /* ignore */
+  }
+  return { levelId: DEFAULT_LEVEL, unitId: DEFAULT_UNIT }
+}
+
 export function MatrixProvider({ children }) {
   const [mode, setMode] = useState('robot')
-  // Teacher control overlay state, persisted across reloads for a testing session.
+  const [active, setActive] = useState(loadUnit) // { levelId, unitId }
   const [teacherLog, setTeacherLog] = useState(loadLog)
 
   useEffect(() => {
@@ -32,26 +53,68 @@ export function MatrixProvider({ children }) {
     }
   }, [teacherLog])
 
+  useEffect(() => {
+    try {
+      localStorage.setItem(UNIT_KEY, JSON.stringify(active))
+    } catch {
+      /* ignore */
+    }
+  }, [active])
+
+  const unit = findUnit(active.levelId, active.unitId) || firstUnitOf(DEFAULT_LEVEL)
+
+  // Select a level (jumps to its first unit) or a specific unit.
+  const selectLevel = useCallback((levelId) => {
+    const first = firstUnitOf(levelId)
+    if (first) setActive({ levelId, unitId: first.id })
+  }, [])
+  const selectUnit = useCallback(
+    (unitId) => setActive((a) => ({ ...a, unitId })),
+    [],
+  )
+
+  // Vocabulary lookup, scoped to the ACTIVE unit (themed words). Function words
+  // are resolved globally via byId (getBlock).
+  const byType = useCallback(
+    (...types) => (unit?.blocks || []).filter((b) => types.includes(b.type)),
+    [unit],
+  )
+  const byId = getBlock
+
   function logEntry({ stars, notes }) {
     const entry = {
       id: `${teacherLog.length + 1}-${mode}`,
       mode,
+      unit: unit?.title,
       stars,
       notes,
-      // Time is captured by the caller (kept out of context to stay testable).
       at: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
     }
     setTeacherLog((log) => [entry, ...log])
     return entry
   }
 
-  function clearLog() {
-    setTeacherLog([])
-  }
+  const clearLog = () => setTeacherLog([])
 
   const value = useMemo(
-    () => ({ mode, setMode, teacherLog, logEntry, clearLog }),
-    [mode, teacherLog],
+    () => ({
+      mode,
+      setMode,
+      // curriculum
+      levels: LEVELS,
+      playableLevels: PLAYABLE_LEVELS,
+      active,
+      unit,
+      selectLevel,
+      selectUnit,
+      byType,
+      byId,
+      // teacher
+      teacherLog,
+      logEntry,
+      clearLog,
+    }),
+    [mode, active, unit, byType, selectLevel, selectUnit, teacherLog],
   )
 
   return <MatrixContext.Provider value={value}>{children}</MatrixContext.Provider>

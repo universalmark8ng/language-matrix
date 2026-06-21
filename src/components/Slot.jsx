@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { X } from 'lucide-react'
-import { byId } from '../data/blocks.js'
+import { getBlock as byId } from '../data/curriculum.js'
 import { speak } from '../lib/speech.js'
 
 /**

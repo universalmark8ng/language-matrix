@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Sparkles, RotateCcw } from 'lucide-react'
-import { byId, byType } from '../../data/blocks.js'
+import { getBlock as byId } from '../../data/curriculum.js'
+import { useMatrix } from '../../context/MatrixContext.jsx'
 import { speak, speakPhrase } from '../../lib/speech.js'
 import Block from '../Block.jsx'
 import Slot from '../Slot.jsx'
@@ -10,6 +11,7 @@ import MicModal from '../MicModal.jsx'
 const CARD_TYPES = ['adjective', 'noun']
 
 export default function MagicCauldron() {
+  const { byType } = useMatrix()
   const [slots, setSlots] = useState([null, null])
   const [pendingId, setPendingId] = useState(null)
   const [fused, setFused] = useState(false)

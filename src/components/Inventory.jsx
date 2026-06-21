@@ -1,4 +1,5 @@
-import { byType, TYPE_LABELS } from '../data/blocks.js'
+import { TYPE_LABELS } from '../data/curriculum.js'
+import { useMatrix } from '../context/MatrixContext.jsx'
 import Block from './Block.jsx'
 
 /**
@@ -10,6 +11,7 @@ import Block from './Block.jsx'
  * @param usedIds array of ids already placed (renders them dimmed/disabled)
  */
 export default function Inventory({ groups, onPick, pendingId, usedIds = [], size = 'sm' }) {
+  const { byType } = useMatrix()
   return (
     <div className="space-y-4">
       {groups.map((type) => (

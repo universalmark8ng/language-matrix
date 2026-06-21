@@ -2,7 +2,7 @@
 // produce genuine Hindi audio when a hi-IN voice is installed; otherwise it
 // gracefully degrades to the default voice (still useful for the prototype).
 
-import { languagePack } from '../data/blocks.js'
+import { languagePack } from '../data/curriculum.js'
 
 let cachedVoice
 let voicesReady = false
