@@ -1,6 +1,7 @@
 import { useMatrix } from './context/MatrixContext.jsx'
 import Header from './components/Header.jsx'
 import UnitPicker from './components/UnitPicker.jsx'
+import AudioNotice from './components/AudioNotice.jsx'
 import TeacherBar from './components/TeacherBar.jsx'
 import CommandRobot from './components/modes/CommandRobot.jsx'
 import MagicCauldron from './components/modes/MagicCauldron.jsx'
@@ -26,6 +27,7 @@ export default function App() {
     <div className="min-h-full bg-gradient-to-b from-ds-bg via-ds-warm to-ds-cream">
       <Header />
       <UnitPicker />
+      <AudioNotice />
 
       <main className="mx-auto w-full max-w-5xl px-4 pb-28 pt-5">
         <p className="mb-4 text-center font-serif text-lg font-semibold text-ds-ink-soft">
