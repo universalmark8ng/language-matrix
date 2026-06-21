@@ -6,17 +6,20 @@ import TeacherBar from './components/TeacherBar.jsx'
 import CommandRobot from './components/modes/CommandRobot.jsx'
 import MagicCauldron from './components/modes/MagicCauldron.jsx'
 import SecretAgents from './components/modes/SecretAgents.jsx'
+import SoundLab from './components/modes/SoundLab.jsx'
 
 const MODE_COMPONENTS = {
   robot: CommandRobot,
   cauldron: MagicCauldron,
   agents: SecretAgents,
+  sounds: SoundLab,
 }
 
 const MODE_INTRO = {
   robot: 'Build a command and tell the robot what to do!',
   cauldron: 'Fuse two cards to brew a magic spell!',
   agents: 'Crack the code — ask and answer in Hindi!',
+  sounds: 'Say it like a local — soft vs breathy sounds (k vs kh!).',
 }
 
 export default function App() {
@@ -26,7 +29,9 @@ export default function App() {
   return (
     <div className="min-h-full bg-gradient-to-b from-ds-bg via-ds-warm to-ds-cream">
       <Header />
-      <UnitPicker />
+      {/* The curriculum unit drives the three games; the Sounds reference is
+          unit-independent, so hide the picker there. */}
+      {mode !== 'sounds' && <UnitPicker />}
       <AudioNotice />
 
       <main className="mx-auto w-full max-w-5xl px-4 pb-28 pt-5">

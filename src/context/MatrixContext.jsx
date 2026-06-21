@@ -15,6 +15,7 @@ export const MODES = [
   { id: 'robot', label: 'Command-A-Robot', emoji: '🤖', accent: 'bg-ds-accent' },
   { id: 'cauldron', label: 'Magic Cauldron', emoji: '🧪', accent: 'bg-ds-accent' },
   { id: 'agents', label: 'Secret Agents', emoji: '🕵️', accent: 'bg-ds-accent' },
+  { id: 'sounds', label: 'Sounds', emoji: '🔊', accent: 'bg-ds-accent' },
 ]
 
 const LOG_KEY = 'language-matrix:teacher-log'
