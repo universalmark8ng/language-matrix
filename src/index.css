@@ -14,16 +14,21 @@ body,
 
 body {
   margin: 0;
-  font-family: 'Baloo 2', 'Noto Sans Devanagari', system-ui, sans-serif;
+  /* DS Learning UI face. */
+  font-family: 'DM Sans', system-ui, sans-serif;
+  color: #1c2632;
+  background-color: #fafaf7;
   -webkit-font-smoothing: antialiased;
   /* Kids tap a lot — kill the blue tap highlight and accidental text selection. */
   -webkit-tap-highlight-color: transparent;
   user-select: none;
 }
 
-/* Devanagari rendered in the same chunky, kid-friendly Baloo 2 face as the
-   Latin text (Baloo 2 covers Devanagari); Noto is just a safety fallback.
-   A touch more line-height lets the matras breathe. */
+/* Vocabulary tokens (transliteration + Devanagari) use the playful Baloo 2
+   face — chunky, kid-friendly, and it covers Devanagari. */
+.token {
+  font-family: 'Baloo 2', 'Noto Sans Devanagari', sans-serif;
+}
 .script {
   font-family: 'Baloo 2', 'Noto Sans Devanagari', sans-serif;
   line-height: 1.55;

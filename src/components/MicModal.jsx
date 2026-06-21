@@ -118,7 +118,7 @@ export default function MicModal({
                   className={`relative grid h-24 w-24 place-items-center rounded-full text-white shadow-xl transition-transform active:scale-95 ${
                     phase === 'recording'
                       ? 'bg-rose-500 scale-110'
-                      : 'bg-indigo-500 hover:bg-indigo-600'
+                      : 'bg-ds-accent hover:bg-ds-accent-hover'
                   }`}
                 >
                   {phase === 'recording' ? (
@@ -156,7 +156,7 @@ export default function MicModal({
             <button
               type="button"
               onClick={onSuccess}
-              className="mt-6 w-full rounded-2xl bg-green-500 px-6 py-3 text-lg font-extrabold text-white shadow-lg hover:bg-green-600 active:scale-95"
+              className="mt-6 w-full rounded-2xl bg-ds-green px-6 py-3 text-lg font-extrabold text-white shadow-lg hover:bg-[#246340] active:scale-95"
             >
               {successLabel}
             </button>

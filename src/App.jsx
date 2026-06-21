@@ -22,11 +22,11 @@ export default function App() {
   const ActiveMode = MODE_COMPONENTS[mode]
 
   return (
-    <div className="min-h-full bg-gradient-to-b from-indigo-50 via-sky-50 to-violet-100">
+    <div className="min-h-full bg-gradient-to-b from-ds-bg via-ds-warm to-ds-cream">
       <Header />
 
       <main className="mx-auto w-full max-w-5xl px-4 pb-28 pt-5">
-        <p className="mb-4 text-center text-base font-bold text-slate-500">
+        <p className="mb-4 text-center font-serif text-lg font-semibold text-ds-ink-soft">
           {MODE_INTRO[mode]}
         </p>
         {/* key forces a fresh mount (and pop-in) when switching modes */}

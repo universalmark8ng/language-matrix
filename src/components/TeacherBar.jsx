@@ -53,7 +53,7 @@ export default function TeacherBar() {
                   className="flex items-start gap-2 rounded-lg bg-slate-50 px-3 py-1.5 text-sm"
                 >
                   <span className="font-mono text-xs text-slate-400">{e.at}</span>
-                  <span className="rounded bg-indigo-100 px-1.5 text-xs font-semibold text-indigo-600">
+                  <span className="rounded bg-ds-accent-light px-1.5 text-xs font-semibold text-ds-accent">
                     {MODES.find((m) => m.id === e.mode)?.emoji} {e.mode}
                   </span>
                   <span className="text-amber-400">{'★'.repeat(e.stars)}</span>
@@ -110,14 +110,14 @@ export default function TeacherBar() {
             onChange={(e) => setNotes(e.target.value)}
             onKeyDown={(e) => e.key === 'Enter' && save()}
             placeholder="Quick note (pronunciation, engagement…)"
-            className="min-w-[140px] flex-1 rounded-xl border border-slate-200 bg-slate-50 px-3 py-1.5 text-sm text-slate-700 outline-none focus:border-indigo-300 focus:bg-white"
+            className="min-w-[140px] flex-1 rounded-xl border border-ds-border bg-ds-warm px-3 py-1.5 text-sm text-ds-ink outline-none focus:border-ds-accent focus:bg-white"
           />
 
           <button
             type="button"
             onClick={save}
             className={`rounded-xl px-4 py-1.5 text-sm font-extrabold text-white shadow transition-colors ${
-              flash ? 'bg-green-500' : 'bg-indigo-500 hover:bg-indigo-600'
+              flash ? 'bg-ds-green' : 'bg-ds-accent hover:bg-ds-accent-hover'
             }`}
           >
             {flash ? 'Saved ✓' : 'Log'}

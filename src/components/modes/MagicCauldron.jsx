@@ -69,15 +69,15 @@ export default function MagicCauldron() {
   return (
     <div className="flex flex-col items-center gap-6">
       {/* Cauldron */}
-      <section className="relative w-full max-w-xl rounded-3xl bg-gradient-to-b from-purple-100 to-fuchsia-100 p-6 text-center shadow-sm ring-1 ring-black/5">
-        <h2 className="text-lg font-extrabold text-slate-700">🧪 Magic Cauldron</h2>
-        <p className="mb-4 text-sm font-semibold text-slate-500">
+      <section className="relative w-full max-w-xl rounded-2xl bg-gradient-to-b from-ds-cream to-ds-warm p-6 text-center shadow-sm ring-1 ring-ds-border">
+        <h2 className="font-serif text-lg font-bold text-ds-ink">🧪 Magic Cauldron</h2>
+        <p className="mb-4 text-sm font-semibold text-ds-ink-soft">
           Drop two cards in the pot to brew a spell!
         </p>
 
         <div className="relative mx-auto w-fit">
           {/* bubbling rim */}
-          <div className="relative grid place-items-center rounded-[2.5rem] rounded-b-[3rem] border-8 border-slate-700 bg-gradient-to-b from-green-400 to-emerald-600 px-6 pb-8 pt-6 shadow-inner">
+          <div className="relative grid place-items-center rounded-[2.5rem] rounded-b-[3rem] border-8 border-ds-dark bg-gradient-to-b from-[#3E9C68] to-ds-green px-6 pb-8 pt-6 shadow-inner">
             {/* bubbles */}
             {fused &&
               [0, 1, 2, 3, 4].map((i) => (
@@ -113,7 +113,7 @@ export default function MagicCauldron() {
               <button
                 type="button"
                 onClick={() => speakPhrase(blocks)}
-                className="flex animate-pop-in flex-col items-center gap-1 rounded-2xl bg-gradient-to-br from-amber-300 to-yellow-500 px-8 py-5 text-slate-900 shadow-xl ring-4 ring-white/60"
+                className="flex animate-pop-in flex-col items-center gap-1 rounded-2xl bg-gradient-to-br from-[#F0C36A] to-ds-gold px-8 py-5 text-ds-ink shadow-xl ring-4 ring-white/70"
               >
                 <Sparkles className="h-6 w-6" />
                 <span className="text-3xl leading-none">
@@ -136,7 +136,7 @@ export default function MagicCauldron() {
             <button
               type="button"
               onClick={() => setMicOpen(true)}
-              className="flex items-center gap-2 rounded-2xl bg-gradient-to-r from-fuchsia-500 to-purple-600 px-7 py-4 text-xl font-extrabold text-white shadow-xl ring-4 ring-fuchsia-300/50 hover:scale-105 active:scale-95"
+              className="flex items-center gap-2 rounded-2xl bg-gradient-to-r from-ds-accent to-ds-gold px-7 py-4 text-xl font-extrabold text-white shadow-xl ring-4 ring-ds-accent/25 hover:scale-105 active:scale-95"
             >
               <Sparkles className="h-6 w-6" /> CAST SPELL!
             </button>
@@ -154,8 +154,8 @@ export default function MagicCauldron() {
       </section>
 
       {/* Elemental cards */}
-      <section className="w-full max-w-3xl rounded-3xl bg-white/70 p-4 shadow-sm ring-1 ring-black/5">
-        <h3 className="mb-3 text-center text-sm font-extrabold uppercase tracking-wider text-slate-500">
+      <section className="w-full max-w-3xl rounded-2xl bg-white p-4 shadow-sm ring-1 ring-ds-border">
+        <h3 className="mb-3 text-center text-sm font-extrabold uppercase tracking-wider text-ds-ink-soft">
           ✨ Elemental Cards — tap to hear, drag to the pot
         </h3>
         <div className="flex flex-wrap justify-center gap-2">
@@ -214,7 +214,7 @@ function buildCreature(a, b) {
 function SpellResult({ result, onClose }) {
   return (
     <div
-      className="fixed inset-0 z-40 flex items-center justify-center overflow-hidden bg-purple-950/80 p-4 backdrop-blur"
+      className="fixed inset-0 z-40 flex items-center justify-center overflow-hidden bg-ds-dark/85 p-4 backdrop-blur"
       onClick={onClose}
     >
       {/* particle burst */}
@@ -225,24 +225,24 @@ function SpellResult({ result, onClose }) {
           style={{
             left: '50%',
             top: '42%',
-            background: ['#fde047', '#f472b6', '#a78bfa', '#34d399'][i % 4],
+            background: ['#E0A43B', '#C4582B', '#3E9C68', '#FDF6E3'][i % 4],
             transform: `rotate(${i * 26}deg) translateY(-${120 + (i % 3) * 30}px)`,
             animationDelay: `${(i % 5) * 0.05}s`,
           }}
         />
       ))}
       <div
-        className="relative w-full max-w-lg rounded-3xl bg-gradient-to-br from-fuchsia-500 to-purple-700 p-8 text-center text-white shadow-2xl animate-pop-in"
+        className="relative w-full max-w-lg rounded-3xl bg-gradient-to-br from-ds-accent to-[#9C4A1F] p-8 text-center text-white shadow-2xl animate-pop-in"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="text-7xl animate-float">{result.emoji}</div>
-        <p className="mt-2 text-sm font-bold uppercase tracking-widest text-fuchsia-200">
+        <p className="mt-2 text-sm font-bold uppercase tracking-widest text-ds-gold-light">
           Spell Successful!
         </p>
         <p className="mt-1 text-2xl font-extrabold">{result.translit}</p>
         <p className="script text-base font-semibold text-fuchsia-200/80">{result.script}</p>
         <div className="mt-5 rounded-2xl bg-white/15 px-4 py-5">
-          <p className="text-xs font-bold uppercase tracking-widest text-fuchsia-200">
+          <p className="text-xs font-bold uppercase tracking-widest text-ds-gold-light">
             You summoned
           </p>
           <p className="text-2xl font-extrabold">✨ {result.name} ✨</p>
@@ -250,7 +250,7 @@ function SpellResult({ result, onClose }) {
         <button
           type="button"
           onClick={onClose}
-          className="mt-6 rounded-2xl bg-white px-6 py-3 text-lg font-extrabold text-purple-600 shadow-lg hover:bg-fuchsia-50 active:scale-95"
+          className="mt-6 rounded-2xl bg-white px-6 py-3 text-lg font-extrabold text-ds-accent shadow-lg hover:bg-ds-warm active:scale-95"
         >
           🔁 Brew Another Spell
         </button>

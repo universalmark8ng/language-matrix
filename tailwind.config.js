@@ -4,8 +4,32 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        // Devanagari-friendly stack; falls back to system fonts.
-        display: ['"Baloo 2"', '"Noto Sans Devanagari"', 'system-ui', 'sans-serif'],
+        // DS Learning brand type. `sans` (DM Sans) is the UI default, `serif`
+        // (Source Serif 4) is for headings, and `token` (Baloo 2, which also
+        // covers Devanagari) is reserved for the playful vocabulary blocks.
+        sans: ['"DM Sans"', 'system-ui', 'sans-serif'],
+        serif: ['"Source Serif 4"', 'Georgia', 'serif'],
+        token: ['"Baloo 2"', '"Noto Sans Devanagari"', 'system-ui', 'sans-serif'],
+      },
+      colors: {
+        // DS Learning brand palette (sourced from dslearning.com.au).
+        ds: {
+          bg: '#FAFAF7',
+          warm: '#F5F1EB',
+          cream: '#FFF8ED',
+          accent: '#C4582B', // terracotta — primary
+          'accent-hover': '#A94A24',
+          'accent-light': '#FEF0EB',
+          dark: '#1C2632', // navy slate
+          ink: '#1C2632',
+          'ink-soft': '#4A5567',
+          'ink-light': '#6B7685',
+          border: '#E2DDD5',
+          gold: '#B8860B',
+          'gold-light': '#FDF6E3',
+          green: '#2D7A4F',
+          'green-light': '#EEFAF2',
+        },
       },
       keyframes: {
         'pop-in': {
@@ -53,15 +77,8 @@ export default {
       },
     },
   },
-  // Color classes arrive as full string literals from the data model, so JIT
-  // already sees them. We only safelist the block background + its hover so a
-  // swapped-in vocab pack (e.g. Mandarin) with new colour choices still works.
-  safelist: [
-    { pattern: /^bg-(blue|green|yellow|purple|pink|orange|red|teal)-(400|500)$/ },
-    {
-      pattern: /^bg-(blue|green|yellow|purple|pink|orange|red|teal)-(500|600)$/,
-      variants: ['hover'],
-    },
-  ],
+  // Block colours arrive as full class strings (arbitrary hex values) from the
+  // data model, so JIT already sees them as literals in blocks.js — no safelist
+  // needed. A swapped-in vocab pack just supplies its own `ui_color` strings.
   plugins: [],
 }

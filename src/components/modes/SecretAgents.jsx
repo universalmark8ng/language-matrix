@@ -51,12 +51,12 @@ export default function SecretAgents() {
   return (
     <div className="mx-auto flex max-w-3xl flex-col gap-4">
       {/* ===== Agent 1: The Inquirer ===== */}
-      <section className="rounded-3xl bg-gradient-to-br from-slate-800 to-slate-900 p-5 text-white shadow-lg">
+      <section className="rounded-3xl bg-gradient-to-br from-ds-dark to-[#11181F] p-5 text-white shadow-lg">
         <div className="mb-3 flex items-center justify-between">
           <h2 className="flex items-center gap-2 font-extrabold">
-            <Radio className="h-5 w-5 text-cyan-400" /> Agent 1 · The Inquirer
+            <Radio className="h-5 w-5 text-ds-gold" /> Agent 1 · The Inquirer
           </h2>
-          <span className="rounded-full bg-cyan-500/20 px-2 py-0.5 text-xs font-bold text-cyan-300">
+          <span className="rounded-full bg-ds-gold/15 px-2 py-0.5 text-xs font-bold text-ds-gold-light">
             ASKING
           </span>
         </div>
@@ -75,17 +75,17 @@ export default function SecretAgents() {
                   <span className="text-base font-extrabold">{b.target_transliteration}</span>
                   <span className="script text-xs opacity-70">{b.target_script}</span>
                 </button>
-                {i < QUESTION.length - 1 && <span className="font-black text-cyan-400">→</span>}
+                {i < QUESTION.length - 1 && <span className="font-black text-ds-gold">→</span>}
               </div>
             )
           })}
-          <span className="text-3xl font-black text-cyan-400">?</span>
+          <span className="text-3xl font-black text-ds-gold">?</span>
         </div>
 
         <button
           type="button"
           onClick={() => speakPhrase(QUESTION.map(byId))}
-          className="mt-4 flex items-center gap-2 rounded-xl bg-cyan-500 px-4 py-2 text-sm font-extrabold text-slate-900 hover:bg-cyan-400"
+          className="mt-4 flex items-center gap-2 rounded-xl bg-ds-gold px-4 py-2 text-sm font-extrabold text-ds-ink hover:bg-[#E0A43B]"
         >
           <Volume2 className="h-4 w-4" /> Play Question — "What is this?"
         </button>
@@ -96,13 +96,13 @@ export default function SecretAgents() {
         <div
           className={`h-1.5 w-2/3 rounded-full transition-all ${
             solved
-              ? 'bg-gradient-to-r from-cyan-400 via-yellow-300 to-fuchsia-400 shadow-[0_0_20px_4px_rgba(250,204,21,0.6)]'
+              ? 'bg-gradient-to-r from-ds-gold via-[#E0A43B] to-ds-accent shadow-[0_0_20px_4px_rgba(224,164,59,0.55)]'
               : 'bg-slate-300'
           }`}
         />
         <span
           className={`absolute grid h-9 w-9 place-items-center rounded-full transition-all ${
-            solved ? 'bg-yellow-300 text-slate-900 animate-pulse scale-110' : 'bg-slate-300 text-slate-500'
+            solved ? 'bg-ds-gold text-ds-ink animate-pulse scale-110' : 'bg-slate-300 text-slate-500'
           }`}
         >
           <Zap className={`h-5 w-5 ${solved ? 'fill-slate-900' : ''}`} />
@@ -110,15 +110,15 @@ export default function SecretAgents() {
       </div>
 
       {/* ===== Agent 2: The Responder ===== */}
-      <section className="rounded-3xl bg-gradient-to-br from-emerald-800 to-green-900 p-5 text-white shadow-lg">
+      <section className="rounded-3xl bg-gradient-to-br from-ds-green to-[#163024] p-5 text-white shadow-lg">
         <div className="mb-3 flex items-center justify-between">
           <h2 className="flex items-center gap-2 font-extrabold">
-            <Radio className="h-5 w-5 text-lime-400" /> Agent 2 · The Responder
+            <Radio className="h-5 w-5 text-ds-gold-light" /> Agent 2 · The Responder
           </h2>
           <button
             type="button"
             onClick={newMission}
-            className="flex items-center gap-1 rounded-full bg-white/10 px-3 py-1 text-xs font-bold text-lime-200 hover:bg-white/20"
+            className="flex items-center gap-1 rounded-full bg-white/10 px-3 py-1 text-xs font-bold text-ds-gold-light hover:bg-white/20"
           >
             <RefreshCw className="h-3.5 w-3.5" /> New Mission
           </button>
@@ -126,17 +126,20 @@ export default function SecretAgents() {
 
         {/* Radar with the hidden item */}
         <div className="mb-4 flex items-center gap-4 rounded-2xl bg-black/30 p-4">
-          <div className="relative grid h-20 w-20 shrink-0 place-items-center rounded-full border-2 border-lime-400/40 bg-green-950">
-            <span className="absolute inset-0 rounded-full border-t-2 border-lime-400/70 animate-spin [animation-duration:3s]" />
+          <div className="relative grid h-20 w-20 shrink-0 place-items-center rounded-full border-2 border-ds-gold/40 bg-green-950">
+            <span className="absolute inset-0 rounded-full border-t-2 border-ds-gold/70 animate-spin [animation-duration:3s]" />
             <span className="text-4xl animate-float">{target.emoji}</span>
           </div>
           <div>
-            <p className="text-xs font-bold uppercase tracking-widest text-lime-300">
+            <p className="text-xs font-bold uppercase tracking-widest text-ds-gold-light">
               Radar Contact
             </p>
-            <p className="text-sm text-lime-100/80">
+            <p className="text-sm text-white/80">
               Answer the question: build{' '}
-              <span className="font-bold text-white">“This is a {target.english_meaning}”</span>
+              <span className="font-bold text-white">
+                “This is {/^[aeiou]/i.test(target.english_meaning) ? 'an' : 'a'}{' '}
+                {target.english_meaning}”
+              </span>
             </p>
           </div>
         </div>
@@ -152,20 +155,20 @@ export default function SecretAgents() {
                   pendingId={pendingId}
                   onPlace={place}
                   onClear={() => setAnswer((p) => [p[0], null, p[2]])}
-                  hintColor="border-lime-300/60"
+                  hintColor="border-ds-gold/50"
                 />
               ) : (
                 // Fixed structural blocks (Yeh / Hai) — pre-snapped.
                 <FixedBlock block={byId(id)} />
               )}
-              {i < answer.length - 1 && <span className="font-black text-lime-400">→</span>}
+              {i < answer.length - 1 && <span className="font-black text-ds-gold-light">→</span>}
             </div>
           ))}
         </div>
 
         {/* Tray */}
         <div className="mt-4">
-          <p className="mb-2 text-center text-xs font-bold uppercase tracking-wider text-lime-300">
+          <p className="mb-2 text-center text-xs font-bold uppercase tracking-wider text-ds-gold-light">
             Pick the right block
           </p>
           <div className="flex flex-wrap justify-center gap-2">
@@ -189,7 +192,7 @@ export default function SecretAgents() {
             <button
               type="button"
               onClick={() => setMicOpen(true)}
-              className="inline-flex animate-pulse items-center gap-2 rounded-2xl bg-gradient-to-r from-lime-400 to-yellow-400 px-7 py-4 text-xl font-extrabold text-slate-900 shadow-xl ring-4 ring-lime-300/40 hover:scale-105 active:scale-95"
+              className="inline-flex animate-pulse items-center gap-2 rounded-2xl bg-gradient-to-r from-ds-gold to-[#E0A43B] px-7 py-4 text-xl font-extrabold text-ds-ink shadow-xl ring-4 ring-ds-gold/30 hover:scale-105 active:scale-95"
             >
               <Zap className="h-6 w-6 fill-slate-900" /> TRANSMIT ENCRYPTED AUDIO
             </button>
@@ -238,20 +241,20 @@ function MissionResult({ answerBlocks, onClose }) {
       onClick={onClose}
     >
       <div
-        className="relative w-full max-w-lg rounded-3xl bg-gradient-to-br from-emerald-500 to-cyan-600 p-8 text-center text-white shadow-2xl animate-pop-in"
+        className="relative w-full max-w-lg rounded-3xl bg-gradient-to-br from-ds-green to-[#1F5A3A] p-8 text-center text-white shadow-2xl animate-pop-in"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="text-7xl animate-float">🕵️</div>
-        <p className="mt-2 text-sm font-bold uppercase tracking-[0.3em] text-cyan-100">
+        <p className="mt-2 text-sm font-bold uppercase tracking-[0.3em] text-ds-gold-light">
           Mission Accomplished
         </p>
         <p className="mt-2 text-2xl font-extrabold">🔓 Code Broken!</p>
         <p className="mt-3 text-2xl font-extrabold">{translit}</p>
-        <p className="script text-base font-semibold text-cyan-100/80">{script}</p>
+        <p className="script text-base font-semibold text-white/70">{script}</p>
         <button
           type="button"
           onClick={onClose}
-          className="mt-6 rounded-2xl bg-white px-6 py-3 text-lg font-extrabold text-emerald-600 shadow-lg hover:bg-cyan-50 active:scale-95"
+          className="mt-6 rounded-2xl bg-white px-6 py-3 text-lg font-extrabold text-ds-green shadow-lg hover:bg-ds-warm active:scale-95"
         >
           🎯 Next Mission
         </button>

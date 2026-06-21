@@ -78,7 +78,7 @@ export default function Block({
           Absolute beginners read the transliteration aloud; the Devanagari is
           small, for gentle exposure only (no reading pressure). */}
       {block.emoji && <span className="text-3xl leading-none">{block.emoji}</span>}
-      <span className="text-lg font-extrabold leading-tight">
+      <span className="token text-lg font-extrabold leading-tight">
         {block.target_transliteration}
       </span>
       {showEnglish && (

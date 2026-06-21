@@ -57,4 +57,17 @@ src/
     modes/  CommandRobot.jsx  MagicCauldron.jsx  SecretAgents.jsx
 ```
 
+## Branding
+
+Styled to the **DS Learning** brand (dslearning.com.au):
+
+- **Palette** (Tailwind `ds-*` tokens in `tailwind.config.js`): terracotta `#C4582B`
+  (primary), warm cream `#FAFAF7`/`#F5F1EB` backgrounds, navy `#1C2632`, plus gold
+  `#B8860B` and green `#2D7A4F` secondaries.
+- **Type:** Source Serif 4 (headings) + DM Sans (UI) — the brand faces — with
+  **Baloo 2** reserved for the playful vocabulary tokens (it also covers Devanagari).
+- **Logo + tagline** ("Preparing for Life") in the header lockup.
+- Block colour-coding maps onto the brand: **gold** describing words, **navy** things,
+  **green** actions, **terracotta** connectors.
+
 Stack: React 18 + Vite 5 + Tailwind CSS 3 + lucide-react.

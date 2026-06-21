@@ -62,23 +62,23 @@ export default function CommandRobot() {
   return (
     <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.3fr)]">
       {/* Left: inventory */}
-      <section className="rounded-3xl bg-white/70 p-4 shadow-sm ring-1 ring-black/5">
-        <h2 className="mb-3 text-lg font-extrabold text-slate-700">🧱 Block Inventory</h2>
+      <section className="rounded-2xl bg-white p-4 shadow-sm ring-1 ring-ds-border">
+        <h2 className="mb-3 font-serif text-lg font-bold text-ds-ink">🧱 Block Inventory</h2>
         <Inventory
           groups={['adjective', 'noun', 'verb']}
           onPick={(b) => setPendingId(b.id)}
           pendingId={pendingId}
           usedIds={filled}
         />
-        <p className="mt-4 text-center text-xs font-semibold text-slate-400">
+        <p className="mt-4 text-center text-xs font-semibold text-ds-ink-light">
           Drag a block into a slot — or tap a block, then tap a slot.
         </p>
       </section>
 
       {/* Right: syntax track */}
-      <section className="flex flex-col items-center justify-center rounded-3xl bg-gradient-to-br from-blue-50 to-indigo-100 p-6 shadow-sm ring-1 ring-black/5">
-        <h2 className="mb-1 text-lg font-extrabold text-slate-700">⚙️ Syntax Track</h2>
-        <p className="mb-5 text-sm font-semibold text-slate-500">
+      <section className="flex flex-col items-center justify-center rounded-2xl bg-gradient-to-br from-ds-cream to-ds-warm p-6 shadow-sm ring-1 ring-ds-border">
+        <h2 className="mb-1 font-serif text-lg font-bold text-ds-ink">⚙️ Syntax Track</h2>
+        <p className="mb-5 text-sm font-semibold text-ds-ink-soft">
           Build the command in order, then run it!
         </p>
 
@@ -94,7 +94,7 @@ export default function CommandRobot() {
                 onClear={() => clearSlot(t.key)}
               />
               {i < TRACK.length - 1 && (
-                <span className="text-2xl font-black text-indigo-300">→</span>
+                <span className="text-2xl font-black text-ds-accent/40">→</span>
               )}
             </div>
           ))}
@@ -105,7 +105,7 @@ export default function CommandRobot() {
           <button
             type="button"
             onClick={() => speakPhrase(phrase)}
-            className="script mt-5 rounded-full bg-white px-5 py-2 text-xl font-bold text-slate-700 shadow hover:bg-slate-50"
+            className="token mt-5 rounded-full bg-white px-5 py-2 text-xl font-bold text-ds-ink shadow ring-1 ring-ds-border hover:bg-ds-warm"
           >
             🔊 {phrase.filter(Boolean).map((b) => b.target_transliteration).join(' ')}
           </button>
@@ -117,7 +117,7 @@ export default function CommandRobot() {
             <button
               type="button"
               onClick={() => setMicOpen(true)}
-              className="flex animate-pulse items-center gap-2 rounded-2xl bg-gradient-to-r from-rose-500 to-orange-500 px-7 py-4 text-xl font-extrabold text-white shadow-xl ring-4 ring-orange-300/50 hover:scale-105 active:scale-95"
+              className="flex animate-pulse items-center gap-2 rounded-2xl bg-gradient-to-r from-ds-accent to-[#E0A43B] px-7 py-4 text-xl font-extrabold text-white shadow-xl ring-4 ring-ds-accent/25 hover:scale-105 active:scale-95"
             >
               <Play className="h-6 w-6 fill-white" /> RUN CODE!
             </button>
@@ -167,11 +167,11 @@ function RobotResult({ result, onClose }) {
       onClick={onClose}
     >
       <div
-        className="relative w-full max-w-lg rounded-3xl bg-gradient-to-br from-indigo-500 to-blue-600 p-8 text-center text-white shadow-2xl animate-pop-in"
+        className="relative w-full max-w-lg rounded-3xl bg-gradient-to-br from-[#2E3E52] to-ds-dark p-8 text-center text-white shadow-2xl animate-pop-in"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="text-7xl animate-float">🤖</div>
-        <p className="mt-2 text-sm font-bold uppercase tracking-widest text-blue-200">
+        <p className="mt-2 text-sm font-bold uppercase tracking-widest text-ds-cream/70">
           Command Executed
         </p>
         <p className="mt-2 text-3xl font-extrabold">{result.translit}</p>
@@ -182,7 +182,7 @@ function RobotResult({ result, onClose }) {
         <button
           type="button"
           onClick={onClose}
-          className="mt-6 rounded-2xl bg-white px-6 py-3 text-lg font-extrabold text-indigo-600 shadow-lg hover:bg-blue-50 active:scale-95"
+          className="mt-6 rounded-2xl bg-white px-6 py-3 text-lg font-extrabold text-ds-accent shadow-lg hover:bg-ds-warm active:scale-95"
         >
           🔁 Build Another Command
         </button>
