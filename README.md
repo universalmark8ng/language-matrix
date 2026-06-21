@@ -4,12 +4,26 @@ A single-page, gamified web app for testing three audio-visual "Matrix" mechanic
 for conversational language learning. Built for two 8-year-old absolute beginners
 learning **Hindi** — speaking & listening first, no reading/writing pressure.
 
+**🔗 Live:** https://universalmark8ng.github.io/language-matrix/
+
 ## Run it
 
 ```bash
 cd language-matrix
 npm install
 npm run dev      # → http://localhost:5173
+```
+
+Deploy to GitHub Pages (force-pushes `dist/` to the `gh-pages` branch):
+
+```bash
+npm run deploy   # → https://universalmark8ng.github.io/language-matrix/
+```
+
+Generate the native-Hindi review sheet (`curriculum/vocab-review.csv`):
+
+```bash
+npm run review
 ```
 
 Build a static bundle (drop `dist/` on any host):

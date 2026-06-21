@@ -7,7 +7,8 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "review": "node scripts/vocab-review.mjs"
+    "review": "node scripts/vocab-review.mjs",
+    "deploy": "bash scripts/deploy.sh"
   },
   "dependencies": {
     "lucide-react": "^0.460.0",
