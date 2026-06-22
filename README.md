@@ -80,6 +80,9 @@ is in [`curriculum/CURRICULUM.md`](curriculum/CURRICULUM.md); the per-unit
 vocabulary that feeds the three activities lives in
 [`src/data/curriculum.js`](src/data/curriculum.js).
 
+- **Year plan:** [`curriculum/COURSE-BLUEPRINT.md`](curriculum/COURSE-BLUEPRINT.md) —
+  the full 4-term (1-year) journey: timeline, units, structures, sounds, and
+  assessment milestones term by term.
 - **Levels:** Foundations Review (Grades 1–2 diagnostic) · Grade 3 Core (8 units) ·
   Grade 4 / 5 (stubbed for later).
 - The header's **curriculum bar** lets the teacher pick a Level + Unit; the chosen
